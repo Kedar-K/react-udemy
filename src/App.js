@@ -6,27 +6,32 @@ import './Person/Person.css'
 class App extends Component {
   state = {
     persons: [
-      {name: "kk", age: "22"}
+      {id:'asdasd', name: "kk", age: "22"},
+      {id:'dasd', name: "abc", age: "25"}
     ],
     something: "this is something",
     showPersons: false
   }
 
-  switchNameHandeller = (newName) =>{
-    this.setState(
-      {persons: [
-        {name: newName, age: "22"}
-      ]
-    }
-    )
+  deletePersonHandeller =(personsIndex)=>{
+    const persons = [...this.state.persons];
+    persons.splice(personsIndex,1);
+    this.setState({persons: persons})
   }
 
-  nameChangedhandler = (event) =>{
+  nameChangedhandler = (event, id) =>{
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id
+    })
+
+    const person = {...this.state.persons[personIndex]}
+    console.log(person)
+    person.name = event.target.value
+    const persons = this.state.persons
+    persons[personIndex] = person
+
     this.setState(
-      {persons: [
-        {name: event.target.value, age: "22"}
-      ]
-    }
+      {persons: persons}
     )
   }
 
@@ -46,8 +51,14 @@ class App extends Component {
     if(this.state.showPersons){
       persons =(
         <div >
-          {this.state.persons.map(person =>{
-            return <Person name={person.name} age={person.age} changed={this.nameChangedhandler} />
+          {this.state.persons.map((person, index) =>{
+            return <Person 
+                name={person.name}
+                age={person.age} 
+                click={this.deletePersonHandeller.bind(this,index)} 
+                key={person.id}
+                changed={(event) => this.nameChangedhandler(event,person.id)}
+                 />
           })}
         </div>
       )
