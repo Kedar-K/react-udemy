@@ -6,6 +6,11 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    console.log('App ja constructor');
+  }
+
   state = {
     persons: [
       {id:'asdasd', name: "kk", age: "22"},
@@ -13,6 +18,11 @@ class App extends Component {
     ],
     something: "this is something",
     showPersons: false
+  }
+
+  static getDerivedStateFromProps(props, state){
+    console.log('getderivedstatefromprops', props);
+    return state;
   }
 
   deletePersonHandeller =(personsIndex)=>{
@@ -44,7 +54,7 @@ class App extends Component {
 
   render() {
     
-
+    console.log('appjs render')
     let persons = null;
     if(this.state.showPersons){
       persons =(
