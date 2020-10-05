@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Person.css';
+import Aux from '../../../HOC/Auxilary'
 //import styled from 'styled-components'
 
 
@@ -22,11 +23,13 @@ const person = (props) =>{
 // }
 return(
     //<div className="Person">
-    <div className={classes.Person}>
+    //<div className={classes.Person}>
+    <Aux>
         <p onClick={props.click}>I am a person!!!! and my name is {props.name} and {props.age} years old and </p>
         <p>{props.children}</p>
         <input type="text" onChange={props.changed}/>
-    </div>
+    </Aux>
+    //</div>
 
 )
 }

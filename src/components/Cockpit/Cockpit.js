@@ -2,12 +2,15 @@ import React, {useEffect} from 'react';
 import classes from './cockpit.css'
 
 const Cockpit = (props) =>{
-    useEffect(() => {
-        console.log('[Cockpit ] Use effect');
-        setTimeout(() => {
-            alert('saved data to cloud')
-        }, 1000);
-    }, [])
+    // useEffect(() => {
+    //     console.log('[Cockpit ] Use effect');
+    //     setTimeout(() => {
+    //         alert('saved data to cloud')
+    //     }, 1000);
+    //     return() =>{
+    //         console.log('cockpit cleanup work');
+    //     }
+    // }, [])
 
     let assignedCasses=[];
     let btnClass = '';

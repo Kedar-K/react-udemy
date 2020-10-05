@@ -3,7 +3,8 @@ import classes from  '../Containers/App.css';
 import '../components/PersonList/Person/Person.css';
 import PersonList from '../components/PersonList/PersonList'
 import Cockpit from '../components/Cockpit/Cockpit';
-
+import withClass from '..//HOC/WithClass'
+import Aux from '../HOC/Auxilary'
 
 class App extends Component {
   constructor(props){
@@ -23,6 +24,10 @@ class App extends Component {
   static getDerivedStateFromProps(props, state){
     console.log('getderivedstatefromprops', props);
     return state;
+  }
+
+  componentWillUnmount(){
+    console.log('[App] will unmount');
   }
 
   deletePersonHandeller =(personsIndex)=>{
@@ -69,7 +74,7 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
+      <Aux>
         <Cockpit
         showPersons = {this.state.showPersons}
         persons = {this.state.persons}
@@ -77,10 +82,9 @@ class App extends Component {
         togglePersons = {this.togglePersonsHandeller}
         />
         {persons}
-        
-      </div>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
