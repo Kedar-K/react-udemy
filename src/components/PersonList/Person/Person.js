@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Person.css';
 import Aux from '../../../HOC/Auxilary'
+import WithClass from '../../../HOC/WithClass'
 //import styled from 'styled-components'
 
 
@@ -34,4 +35,4 @@ return(
 )
 }
 
-export default person;
+export default WithClass(person, classes.Person);
